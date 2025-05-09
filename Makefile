@@ -6,7 +6,7 @@
 #    By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/09 14:36:04 by dcastor           #+#    #+#              #
-#    Updated: 2025/05/09 15:12:32 by dcastor          ###   ########.fr        #
+#    Updated: 2025/05/09 16:46:01 by dcastor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ LIB_NAME := libft
 SRCS_DIR := srcs/
 BUILD_DIR := build/
 LIB_DIR := $(LIB_NAME)/
-INCLUDE_DIRS := -I$(LIB_DIR) -Iincludes
+INCLUDE_DIRS := -I$(LIB_DIR)/includes -Iincludes
 
 # 📦 Compiler & Flags
 CC := cc
@@ -34,6 +34,7 @@ MAKE := make
 # 📁 Sources & Objets
 SRCS := $(addprefix $(SRCS_DIR), \
 		main.c \
+		utils/error.c \
 )
 OBJS := $(patsubst %.c, $(BUILD_DIR)%.o, $(SRCS))
 DEPS := $(OBJS:.o=.d)
@@ -47,11 +48,13 @@ LIB_FILE := $(LIB_NAME).a
 
 # 🎯 Règle principale
 all: $(NAME)
+	./$(NAME)
 
 # 🧱 Construction de l'exécutable
 $(NAME): $(BUILD_DIR) $(BUILD_DIR)$(LIB_FILE) $(OBJS)
 	@echo "[$(NAME)] 🚧 Linking executable..."
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -L$(BUILD_DIR) -lft
+	@$(CC) $(CFLAGS) -o $(BUILD_DIR)$(NAME) $(OBJS) -L$(BUILD_DIR) -lft
+	@ln -s $(BUILD_DIR)$(NAME) $(NAME)
 
 # 🔨 Compilation des .c vers .o
 $(BUILD_DIR)%.o: %.c
@@ -70,7 +73,7 @@ $(BUILD_DIR):
 
 # 📚 Build libft.a
 $(BUILD_DIR)$(LIB_FILE): $(BUILD_DIR) $(LIB_DIR)
-	@$(MAKE) bonus -C $(LIB_DIR) && mv $(LIB_DIR)$(LIB_FILE) $(BUILD_DIR)$(LIB_FILE)
+	@$(MAKE) -C $(LIB_DIR) && mv $(LIB_DIR)$(LIB_FILE) $(BUILD_DIR)$(LIB_FILE)
 
 # 📥 Clone la libft si absente
 $(LIB_DIR):
