@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 15:18:49 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/09 15:55:29 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/09 22:00:47 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ typedef struct s_stack
 }					t_stack;
 
 int					process_error(void);
+t_stack				*parse_strs_to_stack(char *strs[]);
 
 #endif

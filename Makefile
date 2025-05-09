@@ -6,7 +6,7 @@
 #    By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/09 14:36:04 by dcastor           #+#    #+#              #
-#    Updated: 2025/05/09 16:46:01 by dcastor          ###   ########.fr        #
+#    Updated: 2025/05/09 21:58:12 by dcastor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ MAKE := make
 # 📁 Sources & Objets
 SRCS := $(addprefix $(SRCS_DIR), \
 		main.c \
+		init.c \
 		utils/error.c \
 )
 OBJS := $(patsubst %.c, $(BUILD_DIR)%.o, $(SRCS))
@@ -48,13 +49,13 @@ LIB_FILE := $(LIB_NAME).a
 
 # 🎯 Règle principale
 all: $(NAME)
-	./$(NAME)
 
 # 🧱 Construction de l'exécutable
 $(NAME): $(BUILD_DIR) $(BUILD_DIR)$(LIB_FILE) $(OBJS)
 	@echo "[$(NAME)] 🚧 Linking executable..."
-	@$(CC) $(CFLAGS) -o $(BUILD_DIR)$(NAME) $(OBJS) -L$(BUILD_DIR) -lft
-	@ln -s $(BUILD_DIR)$(NAME) $(NAME)
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -L$(BUILD_DIR) -lft
+	@#$(CC) $(CFLAGS) -o $(BUILD_DIR)$(NAME) $(OBJS) -L$(BUILD_DIR) -lft
+	@#ln -s $(BUILD_DIR)$(NAME) $(NAME)
 
 # 🔨 Compilation des .c vers .o
 $(BUILD_DIR)%.o: %.c
