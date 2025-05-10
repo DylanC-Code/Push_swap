@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 15:18:49 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/10 14:30:07 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/10 16:24:42 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,8 @@ t_stack				*parse_strs_to_stack(char *strs[]);
 
 /* Sort */
 t_status			radix_sort(t_stack *stack);
+
+/* Utils */
+t_status			ranking(t_stack *stack);
 
 #endif
