@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 15:18:49 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/09 22:00:47 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/10 14:30:07 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,22 @@
 
 typedef int			t_status;
 
-typedef struct s_node
+typedef struct s_value
 {
 	int				value;
-	struct s_node	*next;
-}					t_node;
+	unsigned int	index;
+}					t_value;
 
 typedef struct s_stack
 {
-	t_node			*top;
-	int				size;
+	t_list			*top;
+	unsigned int	size;
 }					t_stack;
 
 int					process_error(void);
 t_stack				*parse_strs_to_stack(char *strs[]);
+
+/* Sort */
+t_status			radix_sort(t_stack *stack);
 
 #endif
