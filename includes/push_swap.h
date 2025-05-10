@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 15:18:49 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/10 17:00:57 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/10 21:30:42 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,9 @@ t_status			super_swap(t_stack *a_stack, t_stack *b_stack);
 
 t_status			push_a(t_stack *a_stack, t_stack *b_stack);
 t_status			push_b(t_stack *a_stack, t_stack *b_stack);
+
+t_status			rotate_a(t_stack *b_stack);
+t_status			rotate_b(t_stack *a_stack);
+t_status			super_rotate(t_stack *a_stack, t_stack *b_stack);
 
 #endif
