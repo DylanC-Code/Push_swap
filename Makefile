@@ -6,7 +6,7 @@
 #    By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/09 14:36:04 by dcastor           #+#    #+#              #
-#    Updated: 2025/05/10 21:18:34 by dcastor          ###   ########.fr        #
+#    Updated: 2025/05/11 16:42:52 by dcastor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ SRCS := $(addprefix $(SRCS_DIR), \
 		stack/push.c \
 		stack/swap.c \
 		stack/rotate.c \
+		stack/reverse_rotate.c \
 )
 OBJS := $(patsubst %.c, $(BUILD_DIR)%.o, $(SRCS))
 DEPS := $(OBJS:.o=.d)
@@ -103,6 +104,11 @@ fclean: clean
 	@echo "✅ Executable removed"
 
 re: fclean all
+
+# ============================================================================== #
+#                                    TEST RULES                                  #
+# ============================================================================== #
+
 
 # ============================================================================== #
 #                                  PHONY & DEPS                                  #

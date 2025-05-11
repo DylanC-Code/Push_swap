@@ -2,6 +2,7 @@
     "files.associations": {
         "push_swap.h": "c",
         "validate.h": "c",
-        "libft.h": "c"
+        "libft.h": "c",
+        "limits": "c"
     }
 }

@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 15:18:49 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/10 21:42:41 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/11 15:54:59 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ t_status			radix_sort(t_stack *stack);
 
 /* Utils */
 t_status			ranking(t_stack *stack);
+t_stack				*create_stack(void);
 
 /* Stack */
 t_status			swap_a(t_stack *stack);
@@ -50,8 +51,8 @@ t_status			super_swap(t_stack *a_stack, t_stack *b_stack);
 t_status			push_a(t_stack *a_stack, t_stack *b_stack);
 t_status			push_b(t_stack *a_stack, t_stack *b_stack);
 
-t_status			rotate_a(t_stack *b_stack);
-t_status			rotate_b(t_stack *a_stack);
+t_status			rotate_a(t_stack *a_stack);
+t_status			rotate_b(t_stack *b_stack);
 t_status			super_rotate(t_stack *a_stack, t_stack *b_stack);
 
 t_status			reverse_rotate_a(t_stack *a_stack);

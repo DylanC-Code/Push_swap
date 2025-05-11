@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 21:45:44 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/10 14:10:03 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/11 16:37:11 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,5 @@ t_value	*new_value(char *str)
 		return (NULL);
 	content->value = ft_atoi(str);
 	content->index = 0;
-	if (!content->value)
-		return (free(content), NULL);
 	return (content);
 }

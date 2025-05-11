@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 21:18:43 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/10 21:30:30 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/11 16:13:33 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ t_status	rotate(t_stack *stack, char stack_name)
 		return (ERROR);
 	ft_putchar_fd('r', STDOUT_FILENO);
 	ft_putchar_fd(stack_name, STDOUT_FILENO);
+	ft_putchar_fd('\n', STDOUT_FILENO);
 	if (!stack->top || !stack->top->next)
 		return (NOOP);
 	last = ft_lstlast(stack->top);
