@@ -52,8 +52,7 @@ Mkfile.old
 dkms.conf
 
 build
-push_swap
+push_swap*
 libft
 checker*
-complexity
-test
+tester
