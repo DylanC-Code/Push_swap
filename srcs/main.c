@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 14:05:54 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/18 12:42:41 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/18 12:58:26 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	main(int argc, char *argv[])
 	t_node	*a_stack;
 	t_node	*b_stack;
 
+	(void)b_stack;
 	a_stack = NULL;
 	b_stack = NULL;
 	if (check_args(argc, argv) == ERROR)

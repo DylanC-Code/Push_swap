@@ -6,7 +6,7 @@
 #    By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/09 14:36:04 by dcastor           #+#    #+#              #
-#    Updated: 2025/05/18 12:33:52 by dcastor          ###   ########.fr        #
+#    Updated: 2025/05/18 12:59:00 by dcastor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,10 @@ MAKE := make
 SRCS := $(addprefix $(SRCS_DIR), \
 		main.c \
 		init.c \
+		sort/three.c \
 		stack/swap.c \
+		stack/reverse_rotate.c \
+		stack/rotate.c \
 		utils/free.c \
 		utils/node.c \
 		utils/stack.c \

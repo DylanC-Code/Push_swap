@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 15:18:49 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/18 12:50:21 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/18 12:57:48 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@ t_status			initialize_stack(t_node **head, char *nbrs[]);
 
 void				free_stack(t_node *stack);
 
+/* Sort */
+void				sort_three(t_node **p_stack);
+
 /* Node */
 t_node				*create_node(long nbr);
 void				add_node_to_back(t_node **head, t_node *node);
@@ -59,8 +62,9 @@ t_status			rotate_a(t_node **p_b_stack);
 t_status			rotate_b(t_node **p_a_stack);
 t_status			super_rotate(t_node **p_a_stack, t_node **b_stack);
 
-// t_status			reverse_rotate_a(t_stack *a_stack);
-// t_status			reverse_rotate_b(t_stack *b_stack);
-// t_status			super_reverse_rotate(t_stack *a_stack, t_stack *b_stack);
+t_status			reverse_rotate_a(t_node **p_a_stack);
+t_status			reverse_rotate_b(t_node **p_b_stack);
+t_status			super_reverse_rotate(t_node **p_a_stack,
+						t_node **p_b_stack);
 
 #endif
