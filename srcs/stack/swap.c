@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 16:31:07 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/10 16:43:04 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/18 12:41:14 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,43 +16,43 @@
 
 /* =============== Declaration =============== */
 
-t_status	swap_a(t_stack *stack);
-t_status	swap_b(t_stack *stack);
-t_status	super_swap(t_stack *a_stack, t_stack *b_stack);
-t_status	swap(t_stack *stack, char stack_name);
+t_status	swap_a(t_node **p_stack);
+t_status	swap_b(t_node **p_stack);
+t_status	super_swap(t_node **p_a_stack, t_node **p_b_stack);
+t_status	swap(t_node **p_stack, char stack_name);
 
 /* =============== Definition ================ */
 
-t_status	swap_a(t_stack *stack)
+t_status	swap_a(t_node **p_stack)
 {
-	return (swap(stack, 'a'));
+	return (swap(p_stack, 'a'));
 }
 
-t_status	swap_b(t_stack *stack)
+t_status	swap_b(t_node **p_stack)
 {
-	return (swap(stack, 'b'));
+	return (swap(p_stack, 'b'));
 }
 
-t_status	super_swap(t_stack *a_stack, t_stack *b_stack)
+t_status	super_swap(t_node **p_a_stack, t_node **p_b_stack)
 {
-	if (swap_a(a_stack) == ERROR || swap_b(b_stack) == ERROR)
+	if (swap_a(p_a_stack) == ERROR || swap_b(p_b_stack) == ERROR)
 		return (ERROR);
 	return (SUCCESS);
 }
 
-t_status	swap(t_stack *stack, char stack_name)
+t_status	swap(t_node **p_stack, char stack_name)
 {
-	t_list *second;
+	t_node	*second;
 
-	if (!stack)
+	if (!p_stack)
 		return (ERROR);
 	ft_putchar_fd('s', STDOUT_FILENO);
 	ft_putchar_fd(stack_name, STDOUT_FILENO);
-	if (!stack->top || !stack->top->next)
+	if (!*p_stack || !(*p_stack)->next)
 		return (NOOP);
-	second = stack->top->next;
-	stack->top->next = second->next;
-	second->next = stack->top;
-	stack->top = second;
+	second = (*p_stack)->next;
+	(*p_stack)->next = second->next;
+	second->next = *p_stack;
+	*p_stack = second;
 	return (SUCCESS);
 }

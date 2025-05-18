@@ -6,7 +6,7 @@
 #    By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/09 14:36:04 by dcastor           #+#    #+#              #
-#    Updated: 2025/05/18 11:55:03 by dcastor          ###   ########.fr        #
+#    Updated: 2025/05/18 12:33:52 by dcastor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,8 +35,10 @@ MAKE := make
 SRCS := $(addprefix $(SRCS_DIR), \
 		main.c \
 		init.c \
+		stack/swap.c \
 		utils/free.c \
 		utils/node.c \
+		utils/stack.c \
 )
 OBJS := $(patsubst %.c, $(BUILD_DIR)%.o, $(SRCS))
 DEPS := $(OBJS:.o=.d)
