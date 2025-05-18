@@ -5,63 +5,90 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/09 14:05:54 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/18 16:48:00 by dcastor          ###   ########.fr       */
+/*   Created: 2025/05/18 19:50:28 by dcastor           #+#    #+#             */
+/*   Updated: 2025/05/18 21:37:08 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_status	check_args(int argc, char **argv);
+t_status	check_args(int argc, char *argv[]);
+t_status	parse_values(char *values[], t_node *nodes);
+bool		has_value(t_node *head, int value);
 
-#include <stdio.h>
-
-void	print_stack(t_node *stack, const char *label)
+void	print_stack(t_node *head)
 {
-	int	i;
+	t_node	*first;
 
-	i = 0;
-	printf("Stack %s:\n", label);
-	while (stack)
+	first = head;
+	__builtin_printf("Value %d\n", head->value);
+	head = head->next;
+	while (head)
 	{
-		printf("  [%d] %d\n", i++, stack->nbr);
-		stack = stack->next;
+		__builtin_printf("Value %d\n", head->value);
+		head = head->next;
+		if (first == head)
+			return ;
 	}
-	if (i == 0)
-		printf("  (empty)\n");
 }
 
 int	main(int argc, char *argv[])
 {
-	t_node	*a_stack;
-	t_node	*b_stack;
+	t_node	nodes[1000];
 
-	a_stack = NULL;
-	b_stack = NULL;
 	if (check_args(argc, argv) == ERROR)
 		return (EXIT_FAILURE);
 	if (argc == 2)
 		argv = ft_split((const char *)argv[1], ' ');
-	if (initialize_stack(&a_stack, &argv[1]) == ERROR)
-		return (free_stack(a_stack), EXIT_FAILURE);
-	if (!stack_sorted(a_stack))
-	{
-		if (stack_len(a_stack) == 2)
-			swap_a(&a_stack);
-		else if (stack_len(a_stack) == 3)
-			sort_three(&a_stack);
-		else
-			sort_stack(&a_stack, &b_stack);
-	}
-	free_stack(a_stack);
-	return (EXIT_SUCCESS);
+	if (parse_values(&argv[1], nodes) == ERROR)
+		return (EXIT_FAILURE);
+	print_stack(nodes);
+	return (0);
 }
 
-t_status	check_args(int argc, char **argv)
+t_status	check_args(int argc, char *argv[])
 {
 	if (argc < 2)
 		return (ERROR);
 	if (argc == 2 && !argv[1][0])
 		return (ERROR);
 	return (SUCCESS);
+}
+
+t_status	parse_values(char *values[], t_node *nodes)
+{
+	size_t	i;
+	long	nbr;
+
+	i = -1;
+	while (values[++i])
+	{
+		if (!is_valid_number(values[i]))
+			return (ERROR);
+		ft_bzero(nodes + i, sizeof(t_node));
+		nbr = ft_atol(values[i]);
+		if (nbr < INT_MIN || nbr > INT_MAX)
+			return (ERROR);
+		nodes[i].value = nbr;
+		if (i == 0)
+			continue ;
+		if (has_value(nodes, nodes[i].value))
+			return (ERROR);
+		dlist_addback_node(&nodes, nodes + i);
+	}
+	if (i == 0)
+		return (ERROR);
+	dlist_addback_node(&nodes, nodes);
+	return (SUCCESS);
+}
+
+bool	has_value(t_node *head, int value)
+{
+	while (head)
+	{
+		if (head->value == value)
+			return (true);
+		head = head->next;
+	}
+	return (false);
 }

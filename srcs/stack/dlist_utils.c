@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   dlist_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/18 11:33:19 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/18 11:42:39 by dcastor          ###   ########.fr       */
+/*   Created: 2025/05/18 20:33:40 by dcastor           #+#    #+#             */
+/*   Updated: 2025/05/18 21:06:14 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "stack.h"
 
-void	free_stack(t_node *stack)
+void	dlist_addback_node(t_node **head, t_node *new_node)
 {
 	t_node	*next;
 
-	if (!stack)
-		return ;
-	while (stack)
+	next = *head;
+	if (!next)
 	{
-		next = stack->next;
-		free(stack);
-		stack = next;
+		*head = new_node;
+		return ;
 	}
+	while (next->next)
+		next = next->next;
+	next->next = new_node;
+	new_node->prev = next;
 }
+

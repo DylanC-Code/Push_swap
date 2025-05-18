@@ -1,26 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_three.c                                       :+:      :+:    :+:   */
+/*   stack.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/18 12:43:00 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/18 17:03:42 by dcastor          ###   ########.fr       */
+/*   Created: 2025/05/18 20:31:03 by dcastor           #+#    #+#             */
+/*   Updated: 2025/05/18 20:37:49 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#ifndef STACK_H
+# define STACK_H
 
-void	sort_three(t_node **p_a_stack)
+# include "push_swap.h"
+
+typedef struct s_node
 {
-	t_node	*biggest_node;
+	int				value;
+	unsigned int	index;
+	struct s_node	*prev;
+	struct s_node	*next;
+}					t_node;
 
-	biggest_node = find_max(*p_a_stack);
-	if (biggest_node == *p_a_stack)
-		rotate_a(p_a_stack);
-	else if ((*p_a_stack)->next == biggest_node)
-		reverse_rotate_a(p_a_stack);
-	if ((*p_a_stack)->nbr > (*p_a_stack)->next->nbr)
-		swap_a(p_a_stack);
-}
+void				dlist_addback_node(t_node **head, t_node *new_node);
+
+#endif
