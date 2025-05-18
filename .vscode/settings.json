@@ -4,6 +4,7 @@
         "validate.h": "c",
         "libft.h": "c",
         "limits": "c",
-        "cstdlib": "c"
+        "cstdlib": "c",
+        "stack.h": "c"
     }
 }

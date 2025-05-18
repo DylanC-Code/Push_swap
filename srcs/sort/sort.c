@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack.h                                            :+:      :+:    :+:   */
+/*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/18 20:31:03 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/18 20:37:49 by dcastor          ###   ########.fr       */
+/*   Created: 2025/05/18 21:43:01 by dcastor           #+#    #+#             */
+/*   Updated: 2025/05/19 00:00:54 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STACK_H
-# define STACK_H
+#include "push_swap.h"
 
-# include "push_swap.h"
+// unsigned int	initialize_lis(int *lis[], t_node *stack);
 
-typedef struct s_node
+void	sort_stacks(t_node *a_stack, t_node *b_stack)
 {
-	int				value;
-	unsigned int	index;
-	struct s_node	*prev;
-	struct s_node	*next;
-}					t_node;
+	int		values[1000];
+	size_t	size;
+	int		lis[1000];
+	size_t	lis_len;
 
-void				dlist_addback_node(t_node **head, t_node *new_node);
+	size = stack_to_int_arr(a_stack, values);
+	lis_len = ft_lis_len(values, size);
+	// lis_len = initialize_lis(lis, a_stack);
+}
 
-#endif
+// unsigned int	initialize_lis(int *lis[], t_node *stack)
+// {
+// }

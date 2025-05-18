@@ -6,7 +6,7 @@
 #    By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/09 14:36:04 by dcastor           #+#    #+#              #
-#    Updated: 2025/05/18 20:48:32 by dcastor          ###   ########.fr        #
+#    Updated: 2025/05/18 23:59:56 by dcastor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,8 @@ MAKE := make
 # 📁 Sources & Objets
 SRCS := $(addprefix $(SRCS_DIR), \
 		main.c \
+		parser.c \
+		sort/sort.c \
 		stack/dlist_utils.c \
 )
 OBJS := $(patsubst %.c, $(BUILD_DIR)%.o, $(SRCS))
@@ -79,12 +81,12 @@ $(LIB_DIR)$(LIB_FILE): $(LIB_DIR)
 
 clean:
 	@echo "🧼 Cleaning build files..."
-	@rm -fr $(BUILD_DIR)
+	@rm -fr $(BUILD_DIR) && make -C $(LIB_DIR) clean
 	@echo "✅ Clean complete"
 
 fclean: clean
 	@echo "🧨 Removing executable..."
-	@rm -f $(NAME)
+	@rm -f $(NAME) && make -C $(LIB_DIR) fclean
 	@echo "✅ Executable removed"
 
 re: fclean all
