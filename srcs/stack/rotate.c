@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 21:18:43 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/18 13:02:59 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/18 15:57:00 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 /* =============== Declaration =============== */
 
 t_status	rotate(t_node **p_stack, char stack_name);
-t_status	rotate_a(t_node **p_b_stack);
-t_status	rotate_b(t_node **p_a_stack);
+t_status	rotate_a(t_node **p_a_stack);
+t_status	rotate_b(t_node **p_b_stack);
 t_status	super_rotate(t_node **p_a_stack, t_node **b_stack);
 
 /* =============== Definition ================ */
@@ -35,7 +35,7 @@ t_status	rotate(t_node **p_stack, char stack_name)
 	ft_putchar_fd('\n', STDOUT_FILENO);
 	if (!(*p_stack) || !(*p_stack)->next)
 		return (NOOP);
-	last = (t_node *)ft_lstlast((t_list *)(*p_stack)->next);
+	last = find_last_node(*p_stack);
 	second = (*p_stack)->next;
 	(*p_stack)->next = NULL;
 	last->next = *p_stack;

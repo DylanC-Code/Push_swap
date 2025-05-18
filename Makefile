@@ -6,7 +6,7 @@
 #    By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/09 14:36:04 by dcastor           #+#    #+#              #
-#    Updated: 2025/05/18 12:59:00 by dcastor          ###   ########.fr        #
+#    Updated: 2025/05/18 16:34:13 by dcastor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,12 @@ MAKE := make
 SRCS := $(addprefix $(SRCS_DIR), \
 		main.c \
 		init.c \
-		sort/three.c \
+		sort/sort_three.c \
+		sort/sort_stack/init_nodes.c \
+		sort/sort_stack/move_a_to_b.c \
+		sort/sort_stack/rotate.c \
+		sort/sort_stack/sort_stack.c \
+		stack/push.c \
 		stack/swap.c \
 		stack/reverse_rotate.c \
 		stack/rotate.c \
@@ -107,7 +112,7 @@ test:
 		make fr -C push_swap_tester && mv push_swap_tester/complexity tester; \
 	fi
 	@echo "🧪 Running tests..."
-	@./tester 100 100 700 ./checker_linux
+	@./tester 100 1 700 ./checker_linux -o tamere
 
 # ============================================================================== #
 #                                  PHONY & DEPS                                  #

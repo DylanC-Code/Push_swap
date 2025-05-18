@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 21:31:27 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/18 13:02:43 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/18 16:07:56 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ t_status	reverse_rotate(t_node **p_stack, char stack_name)
 		return (ERROR);
 	ft_putstr_fd("rr", STDOUT_FILENO);
 	ft_putchar_fd(stack_name, STDOUT_FILENO);
+	ft_putchar_fd('\n', STDOUT_FILENO);
 	if (!(*p_stack) || !(*p_stack)->next)
 		return (NOOP);
 	previous = *p_stack;
@@ -41,8 +42,8 @@ t_status	reverse_rotate(t_node **p_stack, char stack_name)
 			break ;
 		previous = previous->next;
 	}
-	last = (t_node *)ft_lstlast((t_list *)*p_stack);
-	ft_lstadd_front((t_list **)p_stack, (t_list *)last);
+	last = find_last_node(*p_stack);
+	add_node_to_frond(p_stack, last);
 	previous->next = NULL;
 	return (SUCCESS);
 }

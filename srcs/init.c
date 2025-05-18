@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 11:06:58 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/18 11:49:43 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/18 15:50:00 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "push_swap.h"
 
 t_status	initialize_stack(t_node **head, char *nbrs[]);
-bool		has_value(t_node *head, int value);
+static bool	has_value(t_node *head, int value);
 
 t_status	initialize_stack(t_node **head, char *nbrs[])
 {
@@ -26,7 +26,6 @@ t_status	initialize_stack(t_node **head, char *nbrs[])
 		if (!is_valid_number(*nbrs))
 			return (ERROR);
 		converted_nbr = ft_atol(*nbrs);
-		nbrs++;
 		if (converted_nbr > INT_MAX || converted_nbr < INT_MIN)
 			return (ERROR);
 		if (has_value(*head, converted_nbr))
@@ -40,7 +39,7 @@ t_status	initialize_stack(t_node **head, char *nbrs[])
 	return (SUCCESS);
 }
 
-bool	has_value(t_node *head, int value)
+static bool	has_value(t_node *head, int value)
 {
 	while (head)
 	{

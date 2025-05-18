@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 11:46:53 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/18 11:57:59 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/18 16:06:11 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,12 @@ void	add_node_to_back(t_node **head, t_node *node)
 		return ;
 	}
 	*head = node;
+}
+
+void	add_node_to_frond(t_node **head, t_node *new)
+{
+	new->next = *head;
+	*head = new;
 }
 
 t_node	*find_last_node(t_node *head)

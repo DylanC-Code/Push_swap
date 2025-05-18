@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 16:54:42 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/11 16:13:09 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/18 16:52:34 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,41 +16,37 @@
 
 /* =============== Declaration =============== */
 
-t_status	push_a(t_stack *a_stack, t_stack *b_stack);
-t_status	push_b(t_stack *a_stack, t_stack *b_stack);
+t_status	push_a(t_node **p_a_stack, t_node **p_b_stack);
+t_status	push_b(t_node **p_a_stack, t_node **p_b_stack);
 
 /* =============== Definition ================ */
 
-t_status	push_a(t_stack *a_stack, t_stack *b_stack)
+t_status	push_a(t_node **p_a_stack, t_node **p_b_stack)
 {
-	t_list	*b_top;
+	t_node	*b_top;
 
-	if (!a_stack || !b_stack)
+	if (!p_a_stack || !p_b_stack)
 		return (ERROR);
 	ft_putstr_fd("pa\n", STDOUT_FILENO);
-	b_top = b_stack->top;
+	b_top = *p_b_stack;
 	if (!b_top)
 		return (NOOP);
-	b_stack->top = b_top->next;
-	ft_lstadd_front(&a_stack->top, b_top);
-	b_stack->size--;
-	a_stack->size++;
+	*p_b_stack = b_top->next;
+	add_node_to_frond(p_a_stack, b_top);
 	return (SUCCESS);
 }
 
-t_status	push_b(t_stack *a_stack, t_stack *b_stack)
+t_status	push_b(t_node **p_a_stack, t_node **p_b_stack)
 {
-	t_list	*a_top;
+	t_node	*a_top;
 
-	if (!a_stack || !b_stack)
+	if (!p_a_stack || !p_b_stack)
 		return (ERROR);
 	ft_putstr_fd("pb\n", STDOUT_FILENO);
-	a_top = a_stack->top;
+	a_top = *p_a_stack;
 	if (!a_top)
 		return (NOOP);
-	a_stack->top = a_top->next;
-	ft_lstadd_front(&b_stack->top, a_top);
-	a_stack->size--;
-	b_stack->size++;
+	*p_a_stack = a_top->next;
+	add_node_to_frond(p_b_stack, a_top);
 	return (SUCCESS);
 }

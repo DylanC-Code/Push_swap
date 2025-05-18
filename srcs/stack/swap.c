@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/10 16:31:07 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/18 12:41:14 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/18 16:07:42 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ t_status	swap(t_node **p_stack, char stack_name)
 		return (ERROR);
 	ft_putchar_fd('s', STDOUT_FILENO);
 	ft_putchar_fd(stack_name, STDOUT_FILENO);
+	ft_putchar_fd('\n', STDOUT_FILENO);
 	if (!*p_stack || !(*p_stack)->next)
 		return (NOOP);
 	second = (*p_stack)->next;
