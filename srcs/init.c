@@ -5,85 +5,48 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/09 21:45:44 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/11 16:37:11 by dcastor          ###   ########.fr       */
+/*   Created: 2025/05/18 11:06:58 by dcastor           #+#    #+#             */
+/*   Updated: 2025/05/18 11:49:43 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* =============== Importation =============== */
-
+#include "libft.h"
 #include "push_swap.h"
 
-/* =============== Declaration =============== */
+t_status	initialize_stack(t_node **head, char *nbrs[]);
+bool		has_value(t_node *head, int value);
 
-t_stack	*parse_strs_to_stack(char *strs[]);
-t_stack	*create_stack(void);
-t_value	*new_value(char *str);
-bool	has_value(t_list *head, int value);
-
-/* =============== Definition ================ */
-
-t_stack	*parse_strs_to_stack(char *strs[])
+t_status	initialize_stack(t_node **head, char *nbrs[])
 {
-	t_stack	*stack;
-	t_value	*new;
-	t_list	*node;
+	long	converted_nbr;
+	t_node	*new_node;
 
-	stack = create_stack();
-	if (!stack)
-		return (NULL);
-	while (*strs)
+	while (nbrs && *nbrs)
 	{
-		new = new_value(*strs);
-		if (!new || has_value(stack->top, new->value))
-			return (NULL); // TODO: free everything
-		node = ft_lstnew(new);
-		if (!node)
-			return (free(new), NULL); // TODO: free stack
-		ft_lstadd_back(&stack->top, node);
-		stack->size++;
-		strs++;
+		if (!is_valid_number(*nbrs))
+			return (ERROR);
+		converted_nbr = ft_atol(*nbrs);
+		nbrs++;
+		if (converted_nbr > INT_MAX || converted_nbr < INT_MIN)
+			return (ERROR);
+		if (has_value(*head, converted_nbr))
+			return (ERROR);
+		new_node = create_node(converted_nbr);
+		if (!new_node)
+			return (ERROR);
+		add_node_to_back(head, new_node);
+		nbrs++;
 	}
-	return (stack);
+	return (SUCCESS);
 }
 
-bool	has_value(t_list *head, int value)
+bool	has_value(t_node *head, int value)
 {
-	t_value	*content;
-
-	content = NULL;
 	while (head)
 	{
-		content = head->content;
-		if (value == content->value)
+		if (value == head->nbr)
 			return (true);
 		head = head->next;
 	}
 	return (false);
-}
-
-t_stack	*create_stack(void)
-{
-	t_stack	*stack;
-
-	stack = malloc(sizeof(t_stack));
-	if (!stack)
-		return (NULL);
-	stack->size = 0;
-	stack->top = NULL;
-	return (stack);
-}
-
-t_value	*new_value(char *str)
-{
-	t_value	*content;
-
-	if (!is_valid_number(str) || ft_strlen(str) > 11)
-		return (NULL);
-	content = malloc(sizeof(t_value));
-	if (!content)
-		return (NULL);
-	content->value = ft_atoi(str);
-	content->index = 0;
-	return (content);
 }

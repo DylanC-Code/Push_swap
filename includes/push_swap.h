@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 15:18:49 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/11 15:54:59 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/18 11:58:54 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,42 +21,41 @@
 
 typedef int			t_status;
 
-typedef struct s_value
+typedef struct s_node
 {
-	int				value;
-	unsigned int	index;
-}					t_value;
+	int				nbr;
+	int				index;
+	int				push_cost;
+	bool			above_median;
+	bool			cheapest;
+	struct s_node	*target_node;
+	struct s_node	*next;
+	struct s_node	*prev;
+}					t_node;
 
-typedef struct s_stack
-{
-	t_list			*top;
-	unsigned int	size;
-}					t_stack;
+t_status			initialize_stack(t_node **head, char *nbrs[]);
 
-int					process_error(void);
-t_stack				*parse_strs_to_stack(char *strs[]);
+void				free_stack(t_node *stack);
 
-/* Sort */
-t_status			radix_sort(t_stack *stack);
-
-/* Utils */
-t_status			ranking(t_stack *stack);
-t_stack				*create_stack(void);
+/* Node */
+t_node				*create_node(long nbr);
+void				add_node_to_back(t_node **head, t_node *node);
+t_node				*find_last_node(t_node *head);
 
 /* Stack */
-t_status			swap_a(t_stack *stack);
-t_status			swap_b(t_stack *stack);
-t_status			super_swap(t_stack *a_stack, t_stack *b_stack);
+// t_status			swap_a(t_stack *stack);
+// t_status			swap_b(t_stack *stack);
+// t_status			super_swap(t_stack *a_stack, t_stack *b_stack);
 
-t_status			push_a(t_stack *a_stack, t_stack *b_stack);
-t_status			push_b(t_stack *a_stack, t_stack *b_stack);
+// t_status			push_a(t_stack *a_stack, t_stack *b_stack);
+// t_status			push_b(t_stack *a_stack, t_stack *b_stack);
 
-t_status			rotate_a(t_stack *a_stack);
-t_status			rotate_b(t_stack *b_stack);
-t_status			super_rotate(t_stack *a_stack, t_stack *b_stack);
+// t_status			rotate_a(t_stack *a_stack);
+// t_status			rotate_b(t_stack *b_stack);
+// t_status			super_rotate(t_stack *a_stack, t_stack *b_stack);
 
-t_status			reverse_rotate_a(t_stack *a_stack);
-t_status			reverse_rotate_b(t_stack *b_stack);
-t_status			super_reverse_rotate(t_stack *a_stack, t_stack *b_stack);
+// t_status			reverse_rotate_a(t_stack *a_stack);
+// t_status			reverse_rotate_b(t_stack *b_stack);
+// t_status			super_reverse_rotate(t_stack *a_stack, t_stack *b_stack);
 
 #endif

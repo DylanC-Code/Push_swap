@@ -3,6 +3,7 @@
         "push_swap.h": "c",
         "validate.h": "c",
         "libft.h": "c",
-        "limits": "c"
+        "limits": "c",
+        "cstdlib": "c"
     }
 }
