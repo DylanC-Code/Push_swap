@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 19:50:28 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/19 10:00:15 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/19 10:59:07 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	print_stack(t_node *head)
 int	main(int argc, char *argv[])
 {
 	t_node	a_stack[1000];
-	t_node	b_stack[1000];
 
 	if (check_args(argc, argv) == ERROR)
 		return (EXIT_FAILURE);
@@ -41,7 +40,7 @@ int	main(int argc, char *argv[])
 		argv = ft_split((const char *)argv[1], ' ');
 	if (parse_values(&argv[1], a_stack) == ERROR)
 		return (EXIT_FAILURE);
-	sort_stacks(a_stack, b_stack);
+	sort_stack(a_stack);
 	return (0);
 }
 
