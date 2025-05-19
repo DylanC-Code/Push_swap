@@ -6,7 +6,7 @@
 #    By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/09 14:36:04 by dcastor           #+#    #+#              #
-#    Updated: 2025/05/19 17:30:38 by dcastor          ###   ########.fr        #
+#    Updated: 2025/05/19 18:11:05 by dcastor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,13 +16,16 @@
 
 # 📛 Nom du programme
 NAME := push_swap
+BONUS_NAME := checker
 LIB_NAME := Libft
+GNL_NAME := get_next_line
 
 # 📂 Répertoires
 SRCS_DIR := srcs/
 BUILD_DIR := build/
 LIB_DIR := $(LIB_NAME)/
-INCLUDE_DIRS := -I$(LIB_DIR)includes -Iincludes
+GNL_DIR := $(GNL_NAME)/
+INCLUDE_DIRS := -I$(LIB_DIR)includes -Iincludes -I$(GNL_DIR)includes
 
 # 📦 Compiler & Flags
 CC := cc
@@ -49,7 +52,27 @@ SRCS := $(addprefix $(SRCS_DIR), \
 		stack_utils.c \
 )
 OBJS := $(patsubst %.c, $(BUILD_DIR)%.o, $(SRCS))
+SRCS_BONUS = $(addprefix $(SRCS_DIR), \
+	checker_bonus.c \
+	checker_utils_bonus.c  \
+	ft_sort_three.c \
+	moves2.c \
+	push_a_to_b.c \
+	calcul_best_elem.c \
+	push_b_to_a.c \
+	check_arguments.c \
+	check_error.c \
+	largest_increasing_sub.c \
+	push_swap_utils.c \
+	push_swap_utils2.c \
+	ft_sort_five.c \
+	moves1.c \
+	stack_utils.c \
+)
+OBJS_BONUS := $(patsubst %.c, $(BUILD_DIR)%.o, $(SRCS_BONUS))
+
 DEPS := $(OBJS:.o=.d)
+DEPS_BONUS := $(OBJS_BONUS:.o=.d)
 
 # 📚 Libft
 LIB_FILE := libft.a
@@ -66,11 +89,16 @@ $(NAME): $(BUILD_DIR) $(LIB_DIR)$(LIB_FILE) $(OBJS)
 	@echo "[$(NAME)] 🚧 Linking executable..."
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -L$(LIB_DIR) -lft
 
+bonus: $(BUILD_DIR) $(LIB_DIR)$(LIB_FILE) $(OBJS_BONUS)
+	@echo "[$(BONUS_NAME)] 🚧 Linking bonus executable..."
+	@$(CC) $(CFLAGS) -o $(BONUS_NAME) $(OBJS_BONUS) -L$(LIB_DIR) -lft
+
 # 🔨 Compilation des .c vers .o
 $(BUILD_DIR)%.o: %.c
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -c $< -o $@
 	@echo "[$(NAME)] 🧩 Compiling $<"
+
 
 # ============================================================================== #
 #                            DIRECTORY & LIBRARY SETUP                           #
@@ -122,4 +150,4 @@ test:
 .PHONY: all clean fclean re
 
 # 📎 Inclusion des dépendances générées automatiquement
--include $(DEPS)
+-include $(DEPS) $(DEPS_BONUS)
