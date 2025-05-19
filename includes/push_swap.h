@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 15:18:49 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/19 17:49:46 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/19 17:56:07 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void				b_to_a(t_stack **stack_a, t_stack **stack_b, t_info *info);
 t_stack				*max_of_stack(t_stack *stack);
 int					check_duplicate(t_stack *stack, int value);
 void				ft_error(void);
-int					ft_strcmp(char *str1, char *str2);
 int					is_integer(char *num);
 void				ft_sort_under_five(t_stack **s_a, t_stack **s_b,
 						t_info *info);
@@ -73,7 +72,7 @@ void				find_lis(t_stack **stack);
 void				check_valid_numbers(int ac, char **av);
 int					check_space(char *string);
 char				*check_arguments(int ac, char **av);
-t_status			stack_init(t_stack **stack_a, t_stack **stack_b,
+void				stack_init(t_stack **stack_a, t_stack **stack_b,
 						t_info **info);
 void				get_stack(t_stack **stack_a, char **av, t_info *info,
 						int ac);

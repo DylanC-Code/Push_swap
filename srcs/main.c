@@ -6,22 +6,21 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 17:45:35 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/19 17:47:20 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/19 17:57:02 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_status	stack_init(t_stack **stack_a, t_stack **stack_b, t_info **info)
+void	stack_init(t_stack **stack_a, t_stack **stack_b, t_info **info)
 {
 	*stack_a = NULL;
 	*stack_b = NULL;
 	*info = malloc(sizeof(t_info));
-	if (!*info)
-		return (ERROR);
+	if (!(*info))
+		return (ft_error());
 	(*info)->size_a = 0;
 	(*info)->size_b = 0;
-	return (SUCCESS);
 }
 
 int	check_space(char *string)
@@ -61,14 +60,13 @@ int	main(int ac, char **av)
 	char	*full_arg;
 	char	**argv;
 
-	if (ac > 1)
-	{
-		stack_init(&stack_a, &stack_b, &info);
-		full_arg = check_arguments(ac, av);
-		argv = ft_split(full_arg, ' ');
-		check_valid_numbers(ac, argv);
-		get_stack(&stack_a, argv, info, ac);
-		sort_stack(&stack_a, &stack_b, info);
-	}
+	if (ac < 2)
+		return (0);
+	stack_init(&stack_a, &stack_b, &info);
+	full_arg = check_arguments(ac, av);
+	argv = ft_split(full_arg, ' ');
+	check_valid_numbers(ac, argv);
+	get_stack(&stack_a, argv, info, ac);
+	sort_stack(&stack_a, &stack_b, info);
 	return (0);
 }
