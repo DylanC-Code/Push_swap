@@ -6,7 +6,7 @@
 #    By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/09 14:36:04 by dcastor           #+#    #+#              #
-#    Updated: 2025/05/19 11:17:06 by dcastor          ###   ########.fr        #
+#    Updated: 2025/05/19 11:59:56 by dcastor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,8 @@ SRCS := $(addprefix $(SRCS_DIR), \
 		main.c \
 		parser.c \
 		commands/rotate.c \
+		commands/reverse_rotate.c \
+		commands/push.c \
 		sort/sort.c \
 		sort/find_lis.c \
 		sort/find_pivot.c \

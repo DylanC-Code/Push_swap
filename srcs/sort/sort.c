@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 21:43:01 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/19 11:18:45 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/19 12:13:28 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,43 @@
 
 // void				calculate_lis(t_lis_context *dst, t_node *stack);
 
+void	print_lis(t_sort_context *ctx)
+{
+	size_t	i;
+
+	i = -1;
+	__builtin_printf("=== Lis ===\n");
+	while (++i < ctx->lis_len)
+		__builtin_printf("%d\n", ctx->lis[i]);
+	__builtin_printf("===  ===\n");
+}
+
 void	init_b_stack(t_sort_context *ctx)
 {
 	size_t	i;
 
 	i = -1;
+	// ft_putstr_fd("Stack a =====\n", STDIN_FILENO);
+	// print_stack(ctx->a_stack);
+	// ft_putstr_fd("=====\n", STDIN_FILENO);
+	// print_lis(ctx);
+	// __builtin_printf("Pivot %d\n", ctx->pivot);
 	while (++i < ctx->size)
 	{
 		if (ft_int_in_array(ctx->lis, ctx->lis_len, ctx->a_stack->value))
 			ra(ctx);
-        else if (ctx->a_stack->value > ctx->pivot)
-            pb(ctx);
-        else {
-            pb(ctx);
-            rrb(ctx);
-        }
+		else if (ctx->a_stack->value > ctx->pivot)
+			pb(ctx);
+		else
+		{
+			pb(ctx);
+			rb(ctx);
+		}
 	}
+	// ft_putstr_fd("==== Stack a =====\n", STDIN_FILENO);
+	// print_stack(ctx->a_stack);
+	// ft_putstr_fd("==== Stack b ======\n", STDIN_FILENO);
+	// print_stack(ctx->b_stack);
 }
 
 void	sort_stack(t_node *a_stack)
