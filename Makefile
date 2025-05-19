@@ -6,7 +6,7 @@
 #    By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/09 14:36:04 by dcastor           #+#    #+#              #
-#    Updated: 2025/05/19 11:59:56 by dcastor          ###   ########.fr        #
+#    Updated: 2025/05/19 15:13:49 by dcastor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,9 +39,14 @@ SRCS := $(addprefix $(SRCS_DIR), \
 		commands/reverse_rotate.c \
 		commands/push.c \
 		sort/sort.c \
+		sort/cheapest.c \
+		sort/find_indexes.c \
 		sort/find_lis.c \
 		sort/find_pivot.c \
+		sort/perform_cheapest_move.c \
+		sort/push_to_b.c \
 		stack/dlist_utils.c \
+		stack/stack_utils.c \
 )
 OBJS := $(patsubst %.c, $(BUILD_DIR)%.o, $(SRCS))
 DEPS := $(OBJS:.o=.d)

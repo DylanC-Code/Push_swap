@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 19:50:28 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/19 12:01:31 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/19 16:05:18 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ void	print_stack(t_node *head)
 	t_node	*first;
 
 	first = head;
-	__builtin_printf("Value %d\n", head->value);
+	__builtin_printf("%d\n", head->value);
 	head = head->next;
 	while (head)
 	{
-		__builtin_printf("Value %d\n", head->value);
+		__builtin_printf("%d\n", head->value);
 		head = head->next;
 		if (first == head)
 			return ;
@@ -34,11 +34,12 @@ int	main(int argc, char *argv[])
 {
 	t_node	a_stack[1000];
 
+	argv++;
 	if (check_args(argc, argv) == ERROR)
 		return (EXIT_FAILURE);
 	if (argc == 2)
-		argv = ft_split((const char *)argv[1], ' ');
-	if (parse_values(&argv[1], a_stack) == ERROR)
+		argv = ft_split((const char *)argv, ' ');
+	if (parse_values(argv, a_stack) == ERROR)
 		return (EXIT_FAILURE);
 	sort_stack(a_stack);
 	return (0);

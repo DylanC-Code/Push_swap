@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 20:33:40 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/19 11:56:55 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/19 12:47:25 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ size_t	stack_to_int_arr(t_node *head, int arr[])
 		arr[len++] = next->value;
 		next = next->next;
 		if (head == next)
-			return (len + 1);
+			return (len);
 	}
-	return (len + 1);
+	return (len);
 }
 
 void	dlist_extract_node(t_node **head, t_node *node)

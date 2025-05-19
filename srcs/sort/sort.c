@@ -6,13 +6,27 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 21:43:01 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/19 12:13:28 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/19 16:03:24 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// void				calculate_lis(t_lis_context *dst, t_node *stack);
+static void	setup_sort_context(t_sort_context *ctx, t_node *a_stack);
+static void	sort_and_restore(t_sort_context *ctx);
+
+void	sort_stack(t_node *a_stack)
+{
+	t_sort_context	ctx;
+
+	setup_sort_context(&ctx, a_stack);
+	push_non_lis_to_b(&ctx);
+	// __builtin_printf("==== Stack a of len %u ===== \n", ctx.a_len);
+	// print_stack(ctx.a_stack);
+	// __builtin_printf("==== Stack b of len %u ======\n", ctx.b_len);
+	// print_stack(ctx.b_stack);
+	sort_and_restore(&ctx);
+}
 
 void	print_lis(t_sort_context *ctx)
 {
@@ -24,51 +38,37 @@ void	print_lis(t_sort_context *ctx)
 		__builtin_printf("%d\n", ctx->lis[i]);
 	__builtin_printf("===  ===\n");
 }
-
-void	init_b_stack(t_sort_context *ctx)
+static void	setup_sort_context(t_sort_context *ctx, t_node *a_stack)
 {
-	size_t	i;
-
-	i = -1;
-	// ft_putstr_fd("Stack a =====\n", STDIN_FILENO);
-	// print_stack(ctx->a_stack);
-	// ft_putstr_fd("=====\n", STDIN_FILENO);
+	// print_stack(a_stack);
+	ft_bzero(ctx, sizeof(t_sort_context));
+	ctx->a_stack = a_stack;
+	ctx->a_len = stack_to_int_arr(a_stack, ctx->values);
+	ctx->lis_len = find_lis(ctx->values, ctx->lis, ctx->a_len);
+	ctx->pivot = find_pivot(ctx->values, ctx->a_len);
 	// print_lis(ctx);
-	// __builtin_printf("Pivot %d\n", ctx->pivot);
-	while (++i < ctx->size)
-	{
-		if (ft_int_in_array(ctx->lis, ctx->lis_len, ctx->a_stack->value))
-			ra(ctx);
-		else if (ctx->a_stack->value > ctx->pivot)
-			pb(ctx);
-		else
-		{
-			pb(ctx);
-			rb(ctx);
-		}
-	}
-	// ft_putstr_fd("==== Stack a =====\n", STDIN_FILENO);
-	// print_stack(ctx->a_stack);
-	// ft_putstr_fd("==== Stack b ======\n", STDIN_FILENO);
-	// print_stack(ctx->b_stack);
 }
 
-void	sort_stack(t_node *a_stack)
+static void	sort_and_restore(t_sort_context *ctx)
 {
-	t_sort_context	ctx;
-
-	// size_t			i;
-	ft_bzero(&ctx, sizeof(t_sort_context));
-	ctx.a_stack = a_stack;
-	ctx.size = stack_to_int_arr(a_stack, ctx.values);
-	ctx.lis_len = find_lis(ctx.values, ctx.lis, ctx.size);
-	ctx.pivot = find_pivot(ctx.values, ctx.size);
-	init_b_stack(&ctx);
-	// int		values[1000];
-	// size_t	size;
-	// int		lis[1000];
-	// size_t	lis_len;
-	// size = stack_to_int_arr(a_stack, values);
-	// lis_len = ft_lis_len(values, size);
-	// lis_len = initialize_lis(lis, a_stack);
+	while (ctx->b_len)
+	{
+		// __builtin_printf("==== Stack a of len %u ===== \n", ctx->a_len);
+		// print_stack(ctx->a_stack);
+		// __builtin_printf("==== Stack b of len %u ======\n", ctx->b_len);
+		// print_stack(ctx->b_stack);
+		find_indexes(ctx);
+		perform_cheapest_move(ctx);
+	}
+	// __builtin_printf("==== Stack a of len %u ===== \n", ctx->a_len);
+	// print_stack(ctx->a_stack);
+	// __builtin_printf("==== Stack b of len %u ======\n", ctx->b_len);
+	// print_stack(ctx->b_stack);
+	find_indexes(ctx);
+	rotate_min_to_top(ctx);
+	// __builtin_printf("==== Stack a of len %u ===== \n", ctx->a_len);
+	// print_stack(ctx->a_stack);
+	// __builtin_printf("==== Stack b of len %u ======\n", ctx->b_len);
+	// print_stack(ctx->b_stack);
+	// __builtin_printf("==== FINITO ====\n");
 }
