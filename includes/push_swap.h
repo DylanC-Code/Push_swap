@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 15:18:49 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/19 15:41:37 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/19 17:49:46 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,65 +14,114 @@
 # define PUSH_SWAP_H
 
 # include "libft.h"
+# include <fcntl.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <sys/types.h>
+# include <sys/uio.h>
+# include <unistd.h>
+
+typedef int			t_status;
 
 # define ERROR -1
 # define NOOP 0
 # define SUCCESS 1
 
-typedef int			t_status;
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1
+# endif
 
-typedef struct s_node
+typedef struct s_info
 {
-	int				value;
-	unsigned int	index;
-	unsigned int	move_number;
-	bool			above_median;
-	struct s_node	*target;
-	struct s_node	*prev;
-	struct s_node	*next;
-}					t_node;
+	int				size_a;
+	int				size_b;
+}					t_info;
 
-typedef struct s_sort_context
+typedef struct s_stack
 {
-	int				values[1000];
-	int				lis[1000];
-	unsigned int	lis_len;
-	int				pivot;
-	t_node			*a_stack;
-	unsigned int	a_len;
-	t_node			*b_stack;
-	unsigned int	b_len;
-}					t_sort_context;
+	int				number;
+	int				lis;
+	int				lis_len;
+	int				prev;
+	int				dis;
+	int				pair;
+	int				index;
+	struct s_stack	*next;
+}					t_stack;
 
-void				dlist_addback_node(t_node **head, t_node *new_node);
-void				dlist_extract_node(t_node **head, t_node *node);
-void				dlist_addfront_node(t_node **head, t_node *new_node);
-size_t				stack_to_int_arr(t_node *head, int arr[]);
-bool				is_in_lis(t_sort_context *ctx, int value);
-t_node				*find_min_node(t_node *stack, size_t size);
-t_status			parse_values(char *values[], t_node *stack);
-
-/* Sort */
-void				sort_stack(t_node *a_stack);
-size_t				find_lis(int *src, int *dst, size_t size);
-int					find_pivot(int arr[], size_t size);
-void				find_indexes(t_sort_context *ctx);
-void				push_non_lis_to_b(t_sort_context *ctx);
-void				perform_cheapest_move(t_sort_context *ctx);
-void				rotate_min_to_top(t_sort_context *ctx);
-t_node				*find_cheapest_move(t_sort_context *ctx);
-
-/* Commands */
-void				ra(t_sort_context *ctx);
-void				rb(t_sort_context *ctx);
-void				rr(t_sort_context *ctx);
-void				pb(t_sort_context *ctx);
-void				pa(t_sort_context *ctx);
-void				rrb(t_sort_context *ctx);
-void				rra(t_sort_context *ctx);
-void				rrr(t_sort_context *ctx);
-
-/* TODO: To remove */
-void				print_stack(t_node *head);
+void				calculate_best_elem(t_stack *b_elem, t_info *info);
+int					calcul_moves(t_stack *b_elem, t_info *info);
+void				marking_best_elem(t_stack **stack_a, t_stack **stack_b,
+						t_info *info);
+t_stack				*min_move(t_stack **stack_b, t_info *info);
+void				b_to_a(t_stack **stack_a, t_stack **stack_b, t_info *info);
+t_stack				*max_of_stack(t_stack *stack);
+int					check_duplicate(t_stack *stack, int value);
+void				ft_error(void);
+int					ft_strcmp(char *str1, char *str2);
+int					is_integer(char *num);
+void				ft_sort_under_five(t_stack **s_a, t_stack **s_b,
+						t_info *info);
+void				sort_five(t_stack **s_a, t_stack **s_b, t_info *info);
+void				ft_sort_three(t_stack **stack, t_info *info);
+void				sort_three_a(t_stack **stack, t_info *info);
+void				sort_three_b(t_stack **stack, t_info *info);
+t_stack				*max_of_length(t_stack **stack);
+t_stack				*find_elem_by_index(t_stack **stack, int index);
+void				get_lis(t_stack **stack);
+void				find_lis(t_stack **stack);
+void				check_valid_numbers(int ac, char **av);
+int					check_space(char *string);
+char				*check_arguments(int ac, char **av);
+t_status			stack_init(t_stack **stack_a, t_stack **stack_b,
+						t_info **info);
+void				get_stack(t_stack **stack_a, char **av, t_info *info,
+						int ac);
+void				sort_stack(t_stack **stack_a, t_stack **stack_b,
+						t_info *info);
+void				ft_swap(t_stack **stack, char *move, t_info *info);
+void				ft_ss(t_stack **stack_a, t_stack **stack_b, char *move,
+						t_info *info);
+void				ft_push(t_stack **stack_a, t_stack **stack_b, char *move);
+t_stack				*ft_last_elem(t_stack *stack);
+void				ft_rotate(t_stack **stack, char *move, t_info *info);
+void				ft_rr(t_stack **stack_a, t_stack **stack_b, char *move,
+						t_info *info);
+void				ft_reverse_rotate(t_stack **stack, char *move,
+						t_info *info);
+void				ft_rrr(t_stack **stack_a, t_stack **stack_b, char *move,
+						t_info *info);
+void				ft_print_move(char *move);
+int					ft_max(int a, int b);
+void				a_to_b(t_stack **stack_a, t_stack **stack_b, t_info *info);
+void				elem_pos(t_stack **stack_a, t_stack *elem);
+void				mv_to_top(t_stack **s_a, t_stack **s_b, t_stack *b_elem,
+						t_info *info);
+void				norm_move(t_stack **s_a, t_stack **s_b, t_stack *b_elem,
+						t_info *info);
+void				rr_or_rrr(t_stack **s_a, t_stack **s_b, t_stack *b_elem,
+						t_info *info);
+void				rrr_move(t_stack **s_a, t_stack **s_b, t_stack *b_elem,
+						t_info *info);
+int					check_number(char *num);
+int					stack_is_sorted(t_stack *stack);
+void				min_in_top(t_stack **stack, t_info *info);
+t_stack				*min_elem(t_stack *stack);
+void				index_stack(t_stack **stack);
+int					is_empty(t_stack *s);
+void				push(t_stack **s, int value);
+int					pop(t_stack **s, int *value);
+int					fill_stack(t_stack **s, char *arg);
+int					three_len_move(char *move);
+int					four_len_move(char *move);
+int					check_valid_move(char *move);
+void				perform_move(t_stack **s_a, t_stack **s_b, int move,
+						t_info *info);
+void				perform_move_two(t_stack **s_a, t_stack **s_b, int move,
+						t_info *info);
+void				check_moves(t_stack **stack_a, t_stack **stack_b,
+						t_info *info, int fd);
+char				*join_arg(char *s1, char *s2, int a);
+int					ft_count_elem(t_stack *stack);
 
 #endif

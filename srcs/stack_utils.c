@@ -5,44 +5,51 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/19 14:50:58 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/19 14:52:38 by dcastor          ###   ########.fr       */
+/*   Created: 2025/05/19 17:49:22 by dcastor           #+#    #+#             */
+/*   Updated: 2025/05/19 17:49:27 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-bool	is_in_lis(t_sort_context *ctx, int value)
+int	is_empty(t_stack *s)
 {
-	return (ft_int_in_array(ctx->lis, ctx->lis_len, value));
+	if (s == NULL)
+		return (1);
+	else
+		return (0);
 }
 
-t_node	*find_min_node(t_node *stack, size_t size)
+void	push(t_stack **s, int value)
 {
-	t_node	*min;
-	size_t	i;
+	t_stack	*new_node;
 
-	min = stack;
-	i = 0;
-	while (++i < size)
-	{
-		stack = stack->next;
-		if (stack->value < min->value)
-			min = stack;
-	}
-	return (min);
+	new_node = (t_stack *)malloc(sizeof(t_stack));
+	if (!new_node)
+		return ;
+	new_node->number = value;
+	new_node->next = *s;
+	*s = new_node;
 }
 
-void	rotate_min_to_top(t_sort_context *ctx)
+int	pop(t_stack **s, int *value)
 {
-	t_node	*min;
+	t_stack	*tmp;
 
-	min = find_min_node(ctx->a_stack, ctx->a_len);
-	while (ctx->a_stack != min)
-	{
-		if (min->above_median)
-			ra(ctx);
-		else
-			rra(ctx);
-	}
+	if (is_empty(*s))
+		return (1);
+	*value = (*s)->number;
+	tmp = *s;
+	*s = (*s)->next;
+	free(tmp);
+	return (0);
+}
+
+int	fill_stack(t_stack **s, char *arg)
+{
+	int	value;
+
+	value = ft_atoi(arg);
+	push(s, value);
+	return (value);
 }

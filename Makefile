@@ -6,7 +6,7 @@
 #    By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/09 14:36:04 by dcastor           #+#    #+#              #
-#    Updated: 2025/05/19 15:13:49 by dcastor          ###   ########.fr        #
+#    Updated: 2025/05/19 17:30:38 by dcastor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,19 +34,19 @@ MAKE := make
 # 📁 Sources & Objets
 SRCS := $(addprefix $(SRCS_DIR), \
 		main.c \
-		parser.c \
-		commands/rotate.c \
-		commands/reverse_rotate.c \
-		commands/push.c \
-		sort/sort.c \
-		sort/cheapest.c \
-		sort/find_indexes.c \
-		sort/find_lis.c \
-		sort/find_pivot.c \
-		sort/perform_cheapest_move.c \
-		sort/push_to_b.c \
-		stack/dlist_utils.c \
-		stack/stack_utils.c \
+		calcul_best_elem.c \
+		check_arguments.c \
+		check_error.c \
+		largest_increasing_sub.c \
+		moves1.c \
+		moves2.c \
+		push_a_to_b.c \
+		push_b_to_a.c \
+		push_swap_utils.c \
+		push_swap_utils2.c \
+		sort_five.c \
+		sort_three.c \
+		stack_utils.c \
 )
 OBJS := $(patsubst %.c, $(BUILD_DIR)%.o, $(SRCS))
 DEPS := $(OBJS:.o=.d)
