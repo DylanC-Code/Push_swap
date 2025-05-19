@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 17:45:35 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/19 17:57:02 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/19 19:50:31 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,7 @@ int	main(int ac, char **av)
 	check_valid_numbers(ac, argv);
 	get_stack(&stack_a, argv, info, ac);
 	sort_stack(&stack_a, &stack_b, info);
+	free_savage(stack_a, stack_b, info, argv);
+	free(full_arg);
 	return (0);
 }

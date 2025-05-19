@@ -6,7 +6,7 @@
 #    By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/09 14:36:04 by dcastor           #+#    #+#              #
-#    Updated: 2025/05/19 18:46:39 by dcastor          ###   ########.fr        #
+#    Updated: 2025/05/19 19:55:54 by dcastor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,7 @@ SRCS := $(addprefix $(SRCS_DIR), \
 		push_b_to_a.c \
 		push_swap_utils.c \
 		push_swap_utils2.c \
+		savage.c \
 		sort_five.c \
 		sort_three.c \
 		stack_utils.c \
@@ -56,7 +57,6 @@ SRCS_BONUS = $(addprefix $(SRCS_DIR), \
 	checker_bonus.c \
 	checker_utils_bonus.c  \
 	sort_three.c \
-	moves2.c \
 	push_a_to_b.c \
 	calcul_best_elem.c \
 	push_b_to_a.c \
@@ -66,6 +66,8 @@ SRCS_BONUS = $(addprefix $(SRCS_DIR), \
 	push_swap_utils.c \
 	push_swap_utils2.c \
 	moves1.c \
+	moves2.c \
+	savage.c \
 	sort_five.c \
 	stack_utils.c \
 )

@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 15:18:49 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/19 17:56:07 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/19 19:55:59 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,5 +122,7 @@ void				check_moves(t_stack **stack_a, t_stack **stack_b,
 						t_info *info, int fd);
 char				*join_arg(char *s1, char *s2, int a);
 int					ft_count_elem(t_stack *stack);
+void				free_savage(t_stack *a_stack, t_stack *b_stack,
+						t_info *info, char **argv);
 
 #endif

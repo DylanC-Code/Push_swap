@@ -52,8 +52,9 @@ Mkfile.old
 dkms.conf
 
 build
-push_swap*
+push_swap
 libft
-checker*
+checker
+checker_linux
 tester
 test
