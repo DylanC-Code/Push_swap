@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 19:50:28 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/19 16:05:18 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/19 16:42:23 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,10 @@ int	main(int argc, char *argv[])
 	if (check_args(argc, argv) == ERROR)
 		return (EXIT_FAILURE);
 	if (argc == 2)
-		argv = ft_split((const char *)argv, ' ');
+		argv = ft_split((const char *)*argv, ' ');
 	if (parse_values(argv, a_stack) == ERROR)
 		return (EXIT_FAILURE);
+	// __builtin_printf("===  ===\n");
 	sort_stack(a_stack);
 	return (0);
 }
@@ -49,7 +50,7 @@ t_status	check_args(int argc, char *argv[])
 {
 	if (argc < 2)
 		return (ERROR);
-	if (argc == 2 && !argv[1][0])
+	if (argc == 2 && !argv[0][0])
 		return (ERROR);
 	return (SUCCESS);
 }
