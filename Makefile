@@ -6,7 +6,7 @@
 #    By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/09 14:36:04 by dcastor           #+#    #+#              #
-#    Updated: 2025/05/18 23:59:56 by dcastor          ###   ########.fr        #
+#    Updated: 2025/05/19 10:28:21 by dcastor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRCS := $(addprefix $(SRCS_DIR), \
 		main.c \
 		parser.c \
 		sort/sort.c \
+		sort/find_lis.c \
 		stack/dlist_utils.c \
 )
 OBJS := $(patsubst %.c, $(BUILD_DIR)%.o, $(SRCS))
