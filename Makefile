@@ -6,7 +6,7 @@
 #    By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/09 14:36:04 by dcastor           #+#    #+#              #
-#    Updated: 2025/05/19 18:11:05 by dcastor          ###   ########.fr        #
+#    Updated: 2025/05/19 18:46:39 by dcastor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,7 @@ OBJS := $(patsubst %.c, $(BUILD_DIR)%.o, $(SRCS))
 SRCS_BONUS = $(addprefix $(SRCS_DIR), \
 	checker_bonus.c \
 	checker_utils_bonus.c  \
-	ft_sort_three.c \
+	sort_three.c \
 	moves2.c \
 	push_a_to_b.c \
 	calcul_best_elem.c \
@@ -65,8 +65,8 @@ SRCS_BONUS = $(addprefix $(SRCS_DIR), \
 	largest_increasing_sub.c \
 	push_swap_utils.c \
 	push_swap_utils2.c \
-	ft_sort_five.c \
 	moves1.c \
+	sort_five.c \
 	stack_utils.c \
 )
 OBJS_BONUS := $(patsubst %.c, $(BUILD_DIR)%.o, $(SRCS_BONUS))

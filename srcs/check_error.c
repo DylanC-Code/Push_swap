@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 17:48:12 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/19 17:48:12 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/19 18:48:05 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,26 +38,17 @@ void	ft_error(void)
 	exit(1);
 }
 
-int	ft_strcmp(char *str1, char *str2)
-{
-	int	i;
-
-	i = 0;
-	while (str1[i] && str2[i] && (str1[i] == str2[i]))
-		i++;
-	return (str1[i] - str2[i]);
-}
 
 int	checkcmp(char *num, int plus, int minus)
 {
 	if (minus == 1)
 	{
-		if (ft_strcmp(&num[minus], "2147483648") > 0)
+		if (ft_strcmp(&num[minus], "2147483648") != 0)
 			return (1);
 	}
 	else
 	{
-		if (ft_strcmp(&num[plus], "2147483647") > 0)
+		if (ft_strcmp(&num[plus], "2147483647") != 0)
 			return (1);
 	}
 	return (0);
