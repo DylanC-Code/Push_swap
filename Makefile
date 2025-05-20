@@ -6,7 +6,7 @@
 #    By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/09 14:36:04 by dcastor           #+#    #+#              #
-#    Updated: 2025/05/19 19:55:54 by dcastor          ###   ########.fr        #
+#    Updated: 2025/05/20 09:55:53 by dcastor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -135,14 +135,15 @@ re: fclean all
 #                                    TEST RULES                                  #
 # ============================================================================== #
 
-test:
+test: $(NAME) $(BONUS_NAME)
 	@if [ ! -d "push_swap_tester" ]; then \
 		echo "🔁 Cloning push_swap_tester repository..."; \
 		git clone git@github.com:SimonCROS/push_swap_tester.git push_swap_tester; \
 		make fr -C push_swap_tester && mv push_swap_tester/complexity tester; \
 	fi
 	@echo "🧪 Running tests..."
-	@./tester 100 1 700 ./checker_linux -o tamere
+	./tester 100 100 700 ./checker
+	./tester 500 100 5500 ./checker
 
 # ============================================================================== #
 #                                  PHONY & DEPS                                  #
