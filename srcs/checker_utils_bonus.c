@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 17:48:23 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/19 19:10:55 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/20 09:43:58 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ void	stack_init(t_stack **stack_a, t_stack **stack_b, t_info **info)
 	*stack_a = NULL;
 	*stack_b = NULL;
 	*info = malloc(sizeof(t_info));
-	// if (!(*info))
-	// 	return (ft_error());
 	(*info)->size_a = 0;
 	(*info)->size_b = 0;
 }

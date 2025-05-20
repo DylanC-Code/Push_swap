@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 17:48:12 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/19 18:48:05 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/20 09:42:35 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	ft_error(void)
 	write(2, "Error\n", 6);
 	exit(1);
 }
-
 
 int	checkcmp(char *num, int plus, int minus)
 {

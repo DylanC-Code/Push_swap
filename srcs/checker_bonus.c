@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 17:48:19 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/19 19:55:50 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/20 09:43:46 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,11 @@ int	main(int ac, char **av)
 	char	*full_arg;
 	char	**argv;
 
+	stack_a = NULL;
+	stack_b = NULL;
+	info = NULL;
+	argv = NULL;
+	full_arg = NULL;
 	if (ac > 1)
 	{
 		stack_init(&stack_a, &stack_b, &info);
@@ -95,7 +100,5 @@ int	main(int ac, char **av)
 		else
 			write(1, "OK\n", 3);
 	}
-	free_savage(stack_a, stack_b, info, argv);
-	free(full_arg);
-	return (0);
+	return (free_savage(stack_a, stack_b, info, argv), free(full_arg), 0);
 }
