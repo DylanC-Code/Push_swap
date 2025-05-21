@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 15:18:49 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/21 11:41:57 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/21 12:24:24 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ char				*join_arg(char *s1, char *s2, int a);
 int					ft_count_elem(t_stack *stack);
 void				free_savage(t_stack *a_stack, t_stack *b_stack,
 						t_info *info, char **argv);
-void				print_savage(t_stack *stack_b, t_stack *stack_a);
+void				print_savage(t_stack *stack_a, t_stack *stack_b);
 t_status			get_stack(t_stack **stack_a, char **av, t_info *info,
 						int ac);
 

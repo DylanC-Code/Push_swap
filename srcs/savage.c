@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 19:29:17 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/21 11:38:53 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/21 12:24:10 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	free_argv(char **argv)
 		free(argv);
 }
 
-void	print_savage(t_stack *stack_b, t_stack *stack_a)
+void	print_savage(t_stack *stack_a, t_stack *stack_b)
 {
 	if (stack_b || stack_is_sorted(stack_a) == ERROR)
 		write(1, "KO\n", 3);

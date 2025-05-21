@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 17:48:23 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/21 10:09:16 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/21 12:21:28 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	three_len_move(char *move)
 		return (6);
 	if (ft_strcmp(move, "ss\n") == 0)
 		return (10);
-	return (-1);
+	return (ERROR);
 }
 
 int	four_len_move(char *move)
