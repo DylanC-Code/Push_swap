@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 17:48:03 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/19 17:48:04 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/21 11:41:39 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ t_stack	*max_of_stack(t_stack *stack)
 	return (max_stack);
 }
 
-void	check_valid_numbers(int ac, char **av)
+t_status	check_valid_numbers(int ac, char **av)
 {
 	int	i;
 
@@ -69,13 +69,14 @@ void	check_valid_numbers(int ac, char **av)
 	i = ac - 1;
 	while (i >= 0)
 	{
-		if (check_number(av[i]) == 1)
-			ft_error();
+		if (check_number(av[i]) == ERROR)
+			return (ERROR);
 		i--;
 	}
+	return (SUCCESS);
 }
 
-void	get_stack(t_stack **stack_a, char **av, t_info *info, int ac)
+t_status	get_stack(t_stack **stack_a, char **av, t_info *info, int ac)
 {
 	int	i;
 	int	value;
@@ -89,11 +90,8 @@ void	get_stack(t_stack **stack_a, char **av, t_info *info, int ac)
 	while (i >= 0)
 	{
 		value = fill_stack(stack_a, av[i]);
-		if (i < ac - 1)
-		{
-			if (check_duplicate(*stack_a, value))
-				ft_error();
-		}
+		if (i < ac - 1 && check_duplicate(*stack_a, value))
+			return (ft_error());
 		(*stack_a)->lis_len = 1;
 		(*stack_a)->prev = -1;
 		(*stack_a)->index = j;
@@ -102,6 +100,7 @@ void	get_stack(t_stack **stack_a, char **av, t_info *info, int ac)
 		j--;
 		i--;
 	}
+	return (SUCCESS);
 }
 
 char	*check_arguments(int ac, char **av)
@@ -112,10 +111,13 @@ char	*check_arguments(int ac, char **av)
 
 	i = 1;
 	full_arg = NULL;
+	tmp_char = NULL;
 	while (i < ac)
 	{
-		if (check_space(av[i]))
-			ft_error();
+		if (check_space(av[i]) && !tmp_char)
+			return (free(full_arg), NULL);
+		else if (check_space(av[i]))
+			return (ft_error(), free(full_arg), NULL);
 		tmp_char = join_arg(av[i], " ", 1);
 		full_arg = join_arg(full_arg, tmp_char, 0);
 		free(tmp_char);

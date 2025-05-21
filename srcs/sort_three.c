@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 17:49:18 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/19 17:49:18 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/20 13:42:45 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_sort_three(t_stack **stack, t_info *info)
 	index_stack(stack);
 	max_stack = max_of_stack(*stack);
 	min_stack = min_elem(*stack);
-	if (!stack_is_sorted(*stack))
+	if (stack_is_sorted(*stack) == SUCCESS)
 		return ;
 	if (max_stack->index == 1)
 		sort_three_a(stack, info);

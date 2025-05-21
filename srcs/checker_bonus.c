@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 17:48:19 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/20 09:43:46 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/21 11:40:52 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,53 +52,51 @@ void	perform_move_two(t_stack **s_a, t_stack **s_b, int move, t_info *info)
 		ft_ss(s_a, s_b, "", info);
 }
 
-void	check_moves(t_stack **stack_a, t_stack **stack_b, t_info *info, int fd)
+t_status	check_moves(t_stack **stack_a, t_stack **stack_b, t_info *info,
+		int fd)
 {
 	char	*move;
 	int		move_type;
 
 	move = get_next_line(fd);
-	while (move != NULL)
+	while (move)
 	{
 		move_type = check_valid_move(move);
-		if (move_type == -1)
-		{
-			free(move);
-			ft_error();
-		}
+		if (move_type == ERROR)
+			return (free(move), ERROR);
 		else
 			perform_move(stack_a, stack_b, move_type, info);
 		free(move);
 		move = get_next_line(0);
 	}
-	free(move);
+	return (free(move), SUCCESS);
 }
 
 int	main(int ac, char **av)
 {
-	t_stack	*stack_a;
-	t_stack	*stack_b;
-	t_info	*info;
-	char	*full_arg;
-	char	**argv;
+	static t_stack	*stack_a = NULL;
+	static t_stack	*stack_b = NULL;
+	static t_info	*info = NULL;
+	static char		*full_arg = NULL;
+	static char		**argv = NULL;
 
-	stack_a = NULL;
-	stack_b = NULL;
-	info = NULL;
-	argv = NULL;
-	full_arg = NULL;
 	if (ac > 1)
 	{
 		stack_init(&stack_a, &stack_b, &info);
 		full_arg = check_arguments(ac, av);
+		if (!full_arg)
+			return (free_savage(stack_a, stack_b, info, argv), ft_error(), 0);
 		argv = ft_split(full_arg, ' ');
-		check_valid_numbers(ac, argv);
-		get_stack(&stack_a, argv, info, ac);
-		check_moves(&stack_a, &stack_b, info, 0);
-		if (stack_b || stack_is_sorted(stack_a))
-			write(1, "KO\n", 3);
-		else
-			write(1, "OK\n", 3);
+		if (check_valid_numbers(ac, argv) == ERROR)
+			return (free_savage(stack_a, stack_b, info, argv), free(full_arg),
+				0);
+		if (get_stack(&stack_a, argv, info, ac) == ERROR)
+			return (free_savage(stack_a, stack_b, info, argv), free(full_arg),
+				0);
+		if (check_moves(&stack_a, &stack_b, info, 0) == ERROR)
+			return (free_savage(stack_a, stack_b, info, argv), free(full_arg),
+				0);
+		print_savage(stack_a, stack_b);
 	}
 	return (free_savage(stack_a, stack_b, info, argv), free(full_arg), 0);
 }

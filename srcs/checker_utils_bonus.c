@@ -6,19 +6,22 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 17:48:23 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/20 09:43:58 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/21 10:09:16 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	stack_init(t_stack **stack_a, t_stack **stack_b, t_info **info)
+t_status	stack_init(t_stack **stack_a, t_stack **stack_b, t_info **info)
 {
 	*stack_a = NULL;
 	*stack_b = NULL;
 	*info = malloc(sizeof(t_info));
+	if (!*info)
+		return (ERROR);
 	(*info)->size_a = 0;
 	(*info)->size_b = 0;
+	return (SUCCESS);
 }
 
 int	check_space(char *string)
@@ -69,7 +72,7 @@ int	four_len_move(char *move)
 	return (-1);
 }
 
-int	check_valid_move(char *move)
+t_status	check_valid_move(char *move)
 {
 	int	length;
 
@@ -77,16 +80,16 @@ int	check_valid_move(char *move)
 	if (length == 3)
 	{
 		if (three_len_move(move) == -1)
-			ft_error();
+			return (ft_error());
 		else
 			return (three_len_move(move));
 	}
 	else if (length == 4)
 	{
 		if (four_len_move(move) == -1)
-			ft_error();
+			return (ft_error());
 		else
 			return (four_len_move(move));
 	}
-	return (-1);
+	return (ERROR);
 }

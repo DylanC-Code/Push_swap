@@ -6,13 +6,13 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 17:45:35 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/19 19:50:31 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/20 13:32:51 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	stack_init(t_stack **stack_a, t_stack **stack_b, t_info **info)
+t_status	stack_init(t_stack **stack_a, t_stack **stack_b, t_info **info)
 {
 	*stack_a = NULL;
 	*stack_b = NULL;
@@ -21,6 +21,7 @@ void	stack_init(t_stack **stack_a, t_stack **stack_b, t_info **info)
 		return (ft_error());
 	(*info)->size_a = 0;
 	(*info)->size_b = 0;
+	return (SUCCESS);
 }
 
 int	check_space(char *string)
@@ -43,7 +44,7 @@ void	sort_stack(t_stack **stack_a, t_stack **stack_b, t_info *info)
 {
 	ft_sort_under_five(stack_a, stack_b, info);
 	if (info->size_a <= 5)
-		exit(0);
+		return ;
 	find_lis(stack_a);
 	get_lis(stack_a);
 	a_to_b(stack_a, stack_b, info);
@@ -54,21 +55,23 @@ void	sort_stack(t_stack **stack_a, t_stack **stack_b, t_info *info)
 
 int	main(int ac, char **av)
 {
-	t_stack	*stack_a;
-	t_stack	*stack_b;
-	t_info	*info;
-	char	*full_arg;
-	char	**argv;
+	static t_stack	*stack_a = NULL;
+	static t_stack	*stack_b = NULL;
+	static t_info	*info = NULL;
+	static char		*full_arg = NULL;
+	static char		**argv = NULL;
 
 	if (ac < 2)
 		return (0);
-	stack_init(&stack_a, &stack_b, &info);
+	if (stack_init(&stack_a, &stack_b, &info) == ERROR)
+		return (free(full_arg), free_savage(stack_a, stack_b, info, argv), 1);
 	full_arg = check_arguments(ac, av);
+	if (!full_arg)
+		return (free(full_arg), free_savage(stack_a, stack_b, info, argv), 1);
 	argv = ft_split(full_arg, ' ');
-	check_valid_numbers(ac, argv);
+	if (check_valid_numbers(ac, argv) == ERROR)
+		return (free(full_arg), free_savage(stack_a, stack_b, info, argv), 1);
 	get_stack(&stack_a, argv, info, ac);
 	sort_stack(&stack_a, &stack_b, info);
-	free_savage(stack_a, stack_b, info, argv);
-	free(full_arg);
-	return (0);
+	return (free(full_arg), free_savage(stack_a, stack_b, info, argv), 0);
 }

@@ -6,13 +6,13 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 17:48:58 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/20 09:44:20 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/20 13:29:47 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	is_number(char *num)
+t_status	is_number(char *num)
 {
 	int	i;
 
@@ -22,22 +22,22 @@ int	is_number(char *num)
 	while (num[i])
 	{
 		if (num[i] < '0' || num[i] > '9')
-			return (1);
+			return (ERROR);
 		i++;
 	}
-	return (0);
+	return (SUCCESS);
 }
 
-int	check_number(char *num)
+t_status	check_number(char *num)
 {
-	if (is_number(num))
-		ft_error();
-	if (is_integer(num))
-		ft_error();
-	return (0);
+	if (is_number(num) == ERROR)
+		return (ft_error());
+	if (is_integer(num) == ERROR)
+		return (ft_error());
+	return (SUCCESS);
 }
 
-int	stack_is_sorted(t_stack *stack)
+t_status	stack_is_sorted(t_stack *stack)
 {
 	t_stack	*tmp_stack;
 	int		length;
@@ -47,11 +47,11 @@ int	stack_is_sorted(t_stack *stack)
 	while (tmp_stack)
 	{
 		if (tmp_stack->next && tmp_stack->number > tmp_stack->next->number)
-			return (1);
+			return (ERROR);
 		length++;
 		tmp_stack = tmp_stack->next;
 	}
 	if (length == 0)
-		return (1);
-	return (0);
+		return (ERROR);
+	return (SUCCESS);
 }

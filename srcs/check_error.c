@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 17:48:12 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/20 09:42:35 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/20 12:15:20 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ int	check_duplicate(t_stack *stack, int value)
 	return (0);
 }
 
-void	ft_error(void)
+t_status	ft_error(void)
 {
 	write(2, "Error\n", 6);
-	exit(1);
+	return (ERROR);
 }
 
 int	checkcmp(char *num, int plus, int minus)

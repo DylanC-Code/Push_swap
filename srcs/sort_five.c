@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 17:49:08 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/20 09:44:33 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/20 13:40:56 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	ft_sort_under_five(t_stack **s_a, t_stack **s_b, t_info *info)
 {
-	if (stack_is_sorted(*s_a) == 0)
-		exit(0);
+	if (stack_is_sorted(*s_a) == SUCCESS)
+		return ;
 	if (info->size_a > 5)
 		return ;
 	if (info->size_a == 2)
