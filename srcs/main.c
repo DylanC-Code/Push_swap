@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 17:45:35 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/20 13:32:51 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/26 12:55:07 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,14 @@ int	main(int ac, char **av)
 		return (free(full_arg), free_savage(stack_a, stack_b, info, argv), 1);
 	full_arg = check_arguments(ac, av);
 	if (!full_arg)
-		return (free(full_arg), free_savage(stack_a, stack_b, info, argv), 1);
+		return (free(full_arg), free_savage(stack_a, stack_b, info, argv), 0);
 	argv = ft_split(full_arg, ' ');
+	if (!*argv)
+		return (free(full_arg), free_savage(stack_a, stack_b, info, argv), 0);
 	if (check_valid_numbers(ac, argv) == ERROR)
 		return (free(full_arg), free_savage(stack_a, stack_b, info, argv), 1);
-	get_stack(&stack_a, argv, info, ac);
+	if (!get_stack(&stack_a, argv, info, ac))
+		return (free(full_arg), free_savage(stack_a, stack_b, info, argv), 1);
 	sort_stack(&stack_a, &stack_b, info);
 	return (free(full_arg), free_savage(stack_a, stack_b, info, argv), 0);
 }

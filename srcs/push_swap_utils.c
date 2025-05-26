@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 17:48:58 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/20 13:29:47 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/26 12:51:41 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,12 @@ t_status	is_number(char *num)
 
 t_status	check_number(char *num)
 {
+	const long	nbr = ft_atol(num);
+
 	if (is_number(num) == ERROR)
 		return (ft_error());
-	if (is_integer(num) == ERROR)
+	// if (is_integer(num) == ERROR)
+	if (nbr < INT_MIN || nbr > INT_MAX)
 		return (ft_error());
 	return (SUCCESS);
 }
