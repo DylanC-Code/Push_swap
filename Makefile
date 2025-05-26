@@ -6,7 +6,7 @@
 #    By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/09 14:36:04 by dcastor           #+#    #+#              #
-#    Updated: 2025/05/26 09:42:40 by dcastor          ###   ########.fr        #
+#    Updated: 2025/05/26 13:09:49 by dcastor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -124,7 +124,7 @@ clean:
 
 fclean: clean
 	@echo "🧨 Removing executable..."
-	@rm -f $(NAME) && make -C $(LIB_DIR) fclean
+	@rm -f $(NAME) $(BONUS_NAME) && make -C $(LIB_DIR) fclean
 	@echo "✅ Executable removed"
 
 re: fclean all
