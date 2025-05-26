@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 17:48:58 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/26 12:51:41 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/26 13:11:09 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ t_status	check_number(char *num)
 
 	if (is_number(num) == ERROR)
 		return (ft_error());
-	// if (is_integer(num) == ERROR)
 	if (nbr < INT_MIN || nbr > INT_MAX)
 		return (ft_error());
 	return (SUCCESS);
