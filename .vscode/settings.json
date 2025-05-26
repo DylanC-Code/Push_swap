@@ -5,6 +5,7 @@
         "libft.h": "c",
         "limits": "c",
         "cstdlib": "c",
-        "stack.h": "c"
+        "stack.h": "c",
+        "fcntl.h": "c"
     }
 }

@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 15:18:49 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/21 12:24:24 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/26 09:40:45 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,6 @@
 # include <sys/types.h>
 # include <sys/uio.h>
 # include <unistd.h>
-
-typedef int			t_status;
-
-# define ERROR -1
-# define NOOP 0
-# define SUCCESS 1
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
-# endif
 
 typedef struct s_info
 {

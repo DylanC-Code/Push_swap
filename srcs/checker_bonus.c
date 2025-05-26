@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 17:48:19 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/21 12:20:53 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/26 10:04:13 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ t_status	check_moves(t_stack **stack_a, t_stack **stack_b, t_info *info,
 	while (move)
 	{
 		move_type = check_valid_move(move);
-		if (move_type == ERROR)
+		if (move_type == -1)
 			return (free(move), ERROR);
 		else
 			perform_move(stack_a, stack_b, move_type, info);
@@ -87,13 +87,13 @@ int	main(int ac, char **av)
 		if (!full_arg)
 			return (free_savage(stack_a, stack_b, info, argv), ft_error(), 0);
 		argv = ft_split(full_arg, ' ');
-		if (check_valid_numbers(ac, argv) == ERROR)
+		if (!check_valid_numbers(ac, argv))
 			return (free_savage(stack_a, stack_b, info, argv), free(full_arg),
 				0);
-		if (get_stack(&stack_a, argv, info, ac) == ERROR)
+		if (!get_stack(&stack_a, argv, info, ac))
 			return (free_savage(stack_a, stack_b, info, argv), free(full_arg),
 				0);
-		if (check_moves(&stack_a, &stack_b, info, 0) == ERROR)
+		if (!check_moves(&stack_a, &stack_b, info, 0))
 			return (free_savage(stack_a, stack_b, info, argv), free(full_arg),
 				0);
 		print_savage(stack_a, stack_b);

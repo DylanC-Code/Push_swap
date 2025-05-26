@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 17:48:12 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/20 12:15:20 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/26 09:47:44 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ int	is_integer(char *num)
 		i -= 1;
 	}
 	if (i > 10)
-		return (1);
+		return (ERROR);
 	if (i == 10)
 		return (checkcmp(num, plus, minus));
-	return (0);
+	return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 #    By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/09 14:36:04 by dcastor           #+#    #+#              #
-#    Updated: 2025/05/20 09:55:53 by dcastor          ###   ########.fr        #
+#    Updated: 2025/05/26 09:42:40 by dcastor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,15 +17,13 @@
 # 📛 Nom du programme
 NAME := push_swap
 BONUS_NAME := checker
-LIB_NAME := Libft
-GNL_NAME := get_next_line
+LIB_NAME := libft
 
 # 📂 Répertoires
 SRCS_DIR := srcs/
 BUILD_DIR := build/
 LIB_DIR := $(LIB_NAME)/
-GNL_DIR := $(GNL_NAME)/
-INCLUDE_DIRS := -I$(LIB_DIR)includes -Iincludes -I$(GNL_DIR)includes
+INCLUDE_DIRS := -I$(LIB_DIR)includes -Iincludes
 
 # 📦 Compiler & Flags
 CC := cc
