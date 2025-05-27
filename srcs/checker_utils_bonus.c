@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 17:48:23 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/26 10:13:34 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/27 20:00:34 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,5 @@ t_status	check_valid_move(char *move)
 		else
 			return (four_len_move(move));
 	}
-	return (-1);
+	return (ft_error(), -1);
 }

@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/19 17:48:19 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/26 10:04:13 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/27 19:47:57 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,9 @@ int	main(int ac, char **av)
 		if (!get_stack(&stack_a, argv, info, ac))
 			return (free_savage(stack_a, stack_b, info, argv), free(full_arg),
 				0);
+                // check_moves(&stack_a, &stack_b, info, 0);
 		if (!check_moves(&stack_a, &stack_b, info, 0))
-			return (free_savage(stack_a, stack_b, info, argv), free(full_arg),
+        return (free_savage(stack_a, stack_b, info, argv), free(full_arg),
 				0);
 		print_savage(stack_a, stack_b);
 	}

@@ -1,0 +1,15 @@
+{
+    "files.associations": {
+        "stdlib.h": "c",
+        "so_long.h": "c",
+        "mlx.h": "c",
+        "unistd.h": "c",
+        "libft.h": "c",
+        "keysym.h": "c",
+        "map.h": "c",
+        "game.h": "c",
+        "structs.h": "c",
+        "render.h": "c",
+        "push_swap.h": "c"
+    }
+}
