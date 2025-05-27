@@ -6,7 +6,7 @@
 #    By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/09 14:36:04 by dcastor           #+#    #+#              #
-#    Updated: 2025/05/26 13:09:49 by dcastor          ###   ########.fr        #
+#    Updated: 2025/05/27 19:04:53 by dcastor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -111,7 +111,7 @@ $(BUILD_DIR):
 
 # 📚 Build libft.a
 $(LIB_DIR)$(LIB_FILE): $(LIB_DIR)
-	@$(MAKE) -C $(LIB_DIR)
+	@$(MAKE) -sC $(LIB_DIR)
 
 # ============================================================================== #
 #                                   CLEAN RULES                                  #
@@ -119,12 +119,12 @@ $(LIB_DIR)$(LIB_FILE): $(LIB_DIR)
 
 clean:
 	@echo "🧼 Cleaning build files..."
-	@rm -fr $(BUILD_DIR) && make -C $(LIB_DIR) clean
+	@rm -fr $(BUILD_DIR) && make -sC $(LIB_DIR) clean
 	@echo "✅ Clean complete"
 
 fclean: clean
 	@echo "🧨 Removing executable..."
-	@rm -f $(NAME) $(BONUS_NAME) && make -C $(LIB_DIR) fclean
+	@rm -f $(NAME) $(BONUS_NAME) && make -sC $(LIB_DIR) fclean
 	@echo "✅ Executable removed"
 
 re: fclean all
@@ -142,6 +142,9 @@ test: $(NAME) $(BONUS_NAME)
 	@echo "🧪 Running tests..."
 	./tester 100 100 700 ./checker
 	./tester 500 100 5500 ./checker
+
+test_leak: $(NAME)
+	valgrind --leak-check=full --show-leak-kinds=all --track-fds=yes --track-origins=yes --log-fd=1 ./push_swap
 
 # ============================================================================== #
 #                                  PHONY & DEPS                                  #
