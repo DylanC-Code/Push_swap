@@ -6,7 +6,7 @@
 #    By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/05/09 14:36:04 by dcastor           #+#    #+#              #
-#    Updated: 2025/05/27 19:04:53 by dcastor          ###   ########.fr        #
+#    Updated: 2025/05/28 10:08:07 by dcastor          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,18 +86,15 @@ all: $(NAME)
 
 # 🧱 Construction de l'exécutable
 $(NAME): $(BUILD_DIR) $(LIB_DIR)$(LIB_FILE) $(OBJS)
-	@echo "[$(NAME)] 🚧 Linking executable..."
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -L$(LIB_DIR) -lft
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJS) -L$(LIB_DIR) -lft
 
 bonus: $(BUILD_DIR) $(LIB_DIR)$(LIB_FILE) $(OBJS_BONUS)
-	@echo "[$(BONUS_NAME)] 🚧 Linking bonus executable..."
-	@$(CC) $(CFLAGS) -o $(BONUS_NAME) $(OBJS_BONUS) -L$(LIB_DIR) -lft
+	$(CC) $(CFLAGS) -o $(BONUS_NAME) $(OBJS_BONUS) -L$(LIB_DIR) -lft
 
 # 🔨 Compilation des .c vers .o
 $(BUILD_DIR)%.o: %.c
-	@mkdir -p $(dir $@)
-	@$(CC) $(CFLAGS) -c $< -o $@
-	@echo "[$(NAME)] 🧩 Compiling $<"
+	mkdir -p $(dir $@)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 
 # ============================================================================== #
@@ -106,26 +103,21 @@ $(BUILD_DIR)%.o: %.c
 
 # 📁 Création du dossier de build
 $(BUILD_DIR):
-	@mkdir -p $(BUILD_DIR)
-	@echo "📁 Build directory created"
+	mkdir -p $(BUILD_DIR)
 
 # 📚 Build libft.a
 $(LIB_DIR)$(LIB_FILE): $(LIB_DIR)
-	@$(MAKE) -sC $(LIB_DIR)
+	$(MAKE) -sC $(LIB_DIR)
 
 # ============================================================================== #
 #                                   CLEAN RULES                                  #
 # ============================================================================== #
 
 clean:
-	@echo "🧼 Cleaning build files..."
-	@rm -fr $(BUILD_DIR) && make -sC $(LIB_DIR) clean
-	@echo "✅ Clean complete"
+	rm -fr $(BUILD_DIR) && make -sC $(LIB_DIR) clean
 
 fclean: clean
-	@echo "🧨 Removing executable..."
-	@rm -f $(NAME) $(BONUS_NAME) && make -sC $(LIB_DIR) fclean
-	@echo "✅ Executable removed"
+	rm -f $(NAME) $(BONUS_NAME) && make -sC $(LIB_DIR) fclean
 
 re: fclean all
 
